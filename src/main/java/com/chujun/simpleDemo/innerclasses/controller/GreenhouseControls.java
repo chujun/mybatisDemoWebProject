@@ -3,10 +3,8 @@
 // control system, all in a single class. Inner
 // classes allow you to encapsulate different
 // functionality for each type of event.
-package innerclasses.controller;
+package com.chujun.simpleDemo.innerclasses.controller;
 
-import innerclasses.controller.Controller;
-import innerclasses.controller.Event;
 
 public class GreenhouseControls extends Controller {
 	private boolean light = false;

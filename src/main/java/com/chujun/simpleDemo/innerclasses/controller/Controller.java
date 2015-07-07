@@ -1,7 +1,7 @@
 //: Controller.java
 // Along with Event, the generic
 // framework for all control systems:
-package innerclasses.controller;
+package com.chujun.simpleDemo.innerclasses.controller;
 
 // This is just a way to hold Event objects.
 class EventSet {

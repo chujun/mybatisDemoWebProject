@@ -1,6 +1,6 @@
 //: Event.java
 // The common methods for any control event
-package innerclasses.controller;
+package com.chujun.simpleDemo.innerclasses.controller;
 abstract public class Event {
 private long evtTime;
 public Event(long eventTime) {
