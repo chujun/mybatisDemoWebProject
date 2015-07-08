@@ -18,4 +18,6 @@ public interface UserMapper {
 	
 	@Select("select * from user where userName like #{name}")
 	public List<User> selectUsersByName(String name);
+	
+	public List<User> findAll();
 }
