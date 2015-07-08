@@ -10,7 +10,7 @@
 		<result property="userAddress" column="user_address" />
 		<result property="createTime" column="create_time" javaType="date" />
 		<result property="employTime" column="employ_time" javaType="date" jdbcType="INTEGER"
-			typeHandler="com.chujun.practice.mybatis.platform.mybatis.typeHandler.CustomTimeStampHandler" />
+			typeHandler="CustomTimeStampHandler" />
 	</resultMap>
 	<select id="selectUserByID" parameterType="int" resultType="user">
 		select
