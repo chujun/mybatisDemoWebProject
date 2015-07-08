@@ -39,6 +39,7 @@ public class Test {
 			//测试selectUsersByName方法
 			List<User> users = userMapper.selectUsersByName("%chu%");
 			System.out.println(users);
+			
 		} finally {
 			session.close();
 		}
