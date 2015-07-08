@@ -27,7 +27,7 @@
 	<typeAliases>
 	    <typeAlias alias="CustomTimeStampHandler" type="com.chujun.practice.mybatis.platform.mybatis.typeHandler.CustomTimeStampHandler" />
 	    <!-- <typeAlias alias="User" type="com.chujun.practice.mybatis.model.User" /> -->
-	    <!-- 每一个在包 domain.blog 中的 Java Bean，在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名。 -->
+	    <!-- 每一个在包中的java Bean，在没有注解的情况下，会使用Bean的首字母小写的非限定类名来作为它的别名 -->	    
 	    <package name="com.chujun.practice.mybatis.model"/>		
 		<!-- <typeAlias alias="Address" type="com.chujun.practice.mybatis.model.Address"/> -->			
 	</typeAliases>	

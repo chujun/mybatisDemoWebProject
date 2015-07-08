@@ -6,6 +6,7 @@
 */
 package com.chujun.practice.mybatis.test;
 
+import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -34,5 +35,20 @@ public class UserMapperTest extends TestCase {
 		UserMapper mapper = session.getMapper(UserMapper.class);
 		List<User> useres = mapper.findAll();
 		System.out.print(useres);
+		session.close();
+	}
+	
+	public void testInsert(){
+		SqlSession session = sqlSessionFactory.openSession();
+		User user=new User();
+		user.setUserName("chujiaqi");
+		user.setUserAge(24);
+		user.setUserAddress("甘棠镇");
+		user.setCreateTime(new Date());
+		user.setEmployTime(new Date());
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		mapper.insert(user);
+		//System.out.print(useres);
+		session.close();
 	}
 }

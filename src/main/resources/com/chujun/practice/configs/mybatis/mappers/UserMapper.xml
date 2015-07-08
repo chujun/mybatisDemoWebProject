@@ -23,6 +23,11 @@
 		<include refid="base_sql" />
 		from user
 	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="user">
+	   INSERT INTO `user`(`user_name`,`user_age`,`user_address`,`create_time`,`employ_time`)
+        VALUES (#{userName},#{userAge},#{userAddress},#{createTime},#{employTime,typeHandler=CustomTimeStampHandler});
+	</insert>
 
 	<sql id="base_sql">
 		id,user_name,user_age,user_address,create_time,employ_time

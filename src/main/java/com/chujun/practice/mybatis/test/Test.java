@@ -1,4 +1,5 @@
 package com.chujun.practice.mybatis.test;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.event.ListSelectionEvent;
@@ -39,7 +40,17 @@ public class Test {
 			//测试selectUsersByName方法
 			List<User> users = userMapper.selectUsersByName("%chu%");
 			System.out.println(users);
-			
+			//SqlSession session = sqlSessionFactory.openSession();
+			user=new User();
+			user.setUserName("chujiaqi");
+			user.setUserAge(24);
+			user.setUserAddress("甘棠镇");
+			user.setCreateTime(new Date());
+			user.setEmployTime(new Date());
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			int inserted=mapper.insert(user);
+			System.out.print(inserted);
+			session.close();
 		} finally {
 			session.close();
 		}

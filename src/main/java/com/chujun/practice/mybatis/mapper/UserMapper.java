@@ -16,8 +16,10 @@ public interface UserMapper {
 		
 	public User selectUserByID(int id);
 	
-	@Select("select * from user where userName like #{name}")
+	@Select("select * from user where user_name like #{name}")
 	public List<User> selectUsersByName(String name);
 	
 	public List<User> findAll();
+	
+	public int insert(User oneUser);
 }
