@@ -43,8 +43,7 @@ public class CreateSqlSessionFactory {
 			inputStream = Resources.getResourceAsStream(resourceClassPath);
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			return sqlSessionFactory;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {			
 			e.printStackTrace();
 			throw e;
 		}		

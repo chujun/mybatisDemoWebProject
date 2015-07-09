@@ -63,4 +63,13 @@ public class UserMapperTest extends TestCase {
 		session.commit();
 		session.close();
 	}
+	
+	public void testBatchUpdate(){
+		SqlSession session = sqlSessionFactory.openSession();
+		UserMapper userMapper = session.getMapper(UserMapper.class);	
+	    List<User> users = userMapper.findAll();		
+		userMapper.batchUpdate(users);
+		session.commit();
+		session.close();
+	}
 }

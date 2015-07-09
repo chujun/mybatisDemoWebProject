@@ -12,12 +12,13 @@
 		<result property="employTime" column="employ_time" javaType="date" jdbcType="INTEGER"
 			typeHandler="CustomTimeStampHandler" />
 	    <result property="employStatus" column="employ_status"/>
-	</resultMap>
+	</resultMap>	
+    
 	<select id="selectUserByID" parameterType="int" resultMap="userResultMap">
 		select
 		<include refid="base_sql" />
 		from `user` where id = #{id}
-	</select>
+	</select>	
 
     <select id="findById" resultMap="userResultMap">
         select <include refid="base_sql"/>
@@ -45,6 +46,16 @@
 	   where id=#{id}
 	</update>
 
+    <update id="batchUpdate" parameterType="list">
+        <foreach collection="list" item="user" open="" close="" index="index" separator=";">
+            update user
+            set user_name=#{user.userName},user_age=#{user.userAge},user_address=#{user.userAddress},
+            create_time=#{user.createTime},employ_time=#{user.employTime,typeHandler=CustomTimeStampHandler},
+            employ_status=#{user.employStatus}
+            where id=#{user.id}
+        </foreach>
+    </update>
+    
 	<sql id="base_sql">
 		id,user_name,user_age,user_address,create_time,employ_time,employ_status
 	</sql>

@@ -19,9 +19,6 @@ public interface UserMapper extends GenericMapper<User>{
 	@Select("select * from user where user_name like #{name}")
 	public List<User> selectUsersByName(String name);
 	
-	/*public List<User> findAll();
-	
-	public int insert(User oneUser);
-	
-	public int update(User user);*/
+	int batchUpdate(List<User> users);
+
 }
