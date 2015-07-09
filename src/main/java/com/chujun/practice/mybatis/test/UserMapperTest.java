@@ -72,4 +72,12 @@ public class UserMapperTest extends TestCase {
 		session.commit();
 		session.close();
 	}
+	
+	public void testDeleteById(){
+		SqlSession session = sqlSessionFactory.openSession();
+		UserMapper userMapper = session.getMapper(UserMapper.class);	
+	    userMapper.deleteById(21);		
+		session.commit();
+		session.close();
+	}
 }

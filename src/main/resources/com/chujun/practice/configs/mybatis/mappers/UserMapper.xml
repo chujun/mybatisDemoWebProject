@@ -14,7 +14,8 @@
 	    <result property="employStatus" column="employ_status"/>
 	</resultMap>	
     
-	<select id="selectUserByID" parameterType="int" resultMap="userResultMap">
+	<select id="selectUserByID" parameterType="int" resultMap="userResultMap" flushCache="false" useCache="true"
+	timeout="20000" >
 		select
 		<include refid="base_sql" />
 		from `user` where id = #{id}
@@ -55,7 +56,10 @@
             where id=#{user.id}
         </foreach>
     </update>
-    
+    <delete id="deleteById" parameterType="int">
+        delete from user 
+        where id=#{id}
+    </delete>
 	<sql id="base_sql">
 		id,user_name,user_age,user_address,create_time,employ_time,employ_status
 	</sql>

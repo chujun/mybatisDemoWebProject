@@ -21,4 +21,6 @@ public interface GenericMapper<T> {
 	int update(T t);
 	
 	int insert(T t);
+	
+	int deleteById(int id);
 }

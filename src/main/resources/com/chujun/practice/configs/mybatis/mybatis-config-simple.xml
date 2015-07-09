@@ -10,31 +10,35 @@
 	</properties>
 	<!-- added by chujun 2015-07-07 添加mybatis配置 end -->
 	<settings>
-        <setting name="cacheEnabled" value="true" />
-        <setting name="lazyLoadingEnabled" value="false" />
-        <setting name="multipleResultSetsEnabled" value="true" />
-        <setting name="useColumnLabel" value="true" />
-        <setting name="useGeneratedKeys" value="false" />
-        <setting name="autoMappingBehavior" value="PARTIAL" />
-        <setting name="defaultExecutorType" value="SIMPLE" />
-        <setting name="defaultStatementTimeout" value="25" />
-        <setting name="safeRowBoundsEnabled" value="false" />
-        <setting name="mapUnderscoreToCamelCase" value="false" />
-        <setting name="localCacheScope" value="SESSION" />
-        <setting name="jdbcTypeForNull" value="OTHER" />
-        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
-    </settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25" />
+		<setting name="safeRowBoundsEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+		<setting name="localCacheScope" value="SESSION" />
+		<setting name="jdbcTypeForNull" value="OTHER" />
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+	</settings>
 	<typeAliases>
-	    <typeAlias alias="CustomTimeStampHandler" type="com.chujun.practice.mybatis.platform.mybatis.typeHandler.CustomTimeStampHandler" />
-	    <!-- <typeAlias alias="User" type="com.chujun.practice.mybatis.model.User" /> -->
-	    <!-- 每一个在包中的java Bean，在没有注解的情况下，会使用Bean的首字母小写的非限定类名来作为它的别名 -->	    
-	    <package name="com.chujun.practice.mybatis.model"/>		
-		<!-- <typeAlias alias="Address" type="com.chujun.practice.mybatis.model.Address"/> -->			
-	</typeAliases>	
+		<typeAlias alias="CustomTimeStampHandler"
+			type="com.chujun.practice.mybatis.platform.mybatis.typeHandler.CustomTimeStampHandler" />
+		<!-- <typeAlias alias="User" type="com.chujun.practice.mybatis.model.User" 
+			/> -->
+		<!-- 每一个在包中的java Bean，在没有注解的情况下，会使用Bean的首字母小写的非限定类名来作为它的别名 -->
+		<package name="com.chujun.practice.mybatis.model" />
+		<!-- <typeAlias alias="Address" type="com.chujun.practice.mybatis.model.Address"/> -->
+	</typeAliases>
 	<typeHandlers>
-	   <typeHandler javaType="Date" jdbcType="INTEGER"  handler="com.chujun.practice.mybatis.platform.mybatis.typeHandler.CustomTimeStampHandler"/>
-	   <!-- EnumOrdinalTypeHandler：将枚举类型直接转化为Ordinal（int）存储到数据库当中 -->
-	   <typeHandler javaType="com.chujun.practice.mybatis.util.constant.EmployStatus" handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" />
+		<typeHandler javaType="Date" jdbcType="INTEGER"
+			handler="com.chujun.practice.mybatis.platform.mybatis.typeHandler.CustomTimeStampHandler" />
+		<!-- EnumOrdinalTypeHandler：将枚举类型直接转化为Ordinal（int）存储到数据库当中 -->
+		<typeHandler javaType="com.chujun.practice.mybatis.util.constant.EmployStatus"
+			handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" />
 	</typeHandlers>
 	<environments default="development">
 		<environment id="development">
@@ -47,17 +51,23 @@
 			</dataSource>
 		</environment>
 		<environment id="test">
-            <transactionManager type="JDBC" />
-            <dataSource type="POOLED">
-                <property name="driver" value="${jdbc.driver}" />
-                <property name="url" value="${jdbc.url}" />
-                <property name="username" value="${jdbc.username}" />
-                <property name="password" value="${jdbc.password}" />
-            </dataSource>
-        </environment>
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
 	</environments>
 	<mappers>
+		<!-- fisrt way:resource -->
 		<mapper resource="com/chujun/practice/configs/mybatis/mappers/UserMapper.xml" />
-		<mapper resource="com/chujun/practice/configs/mybatis/mappers/AddressMapper.xml" />
+		<mapper
+			resource="com/chujun/practice/configs/mybatis/mappers/AddressMapper.xml" />
+		<!-- second way:class path -->
+		<!-- <mapper class="com.chujun.practice.mybatis.mapper.AddressMapper"/> -->
+		<!-- third way:url -->
+		<!-- fourth way:package -->
 	</mappers>
 </configuration>
