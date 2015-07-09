@@ -12,14 +12,16 @@ import org.apache.ibatis.annotations.Select;
 
 import com.chujun.practice.mybatis.model.User;
 
-public interface UserMapper {
+public interface UserMapper extends GenericMapper<User>{
 		
 	public User selectUserByID(int id);
 	
 	@Select("select * from user where user_name like #{name}")
 	public List<User> selectUsersByName(String name);
 	
-	public List<User> findAll();
+	/*public List<User> findAll();
 	
 	public int insert(User oneUser);
+	
+	public int update(User user);*/
 }

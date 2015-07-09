@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.chujun.practice.mybatis.model.Address;
 
-public interface AddressMapper {
+public interface AddressMapper extends GenericMapper<Address> {
 		
 	public List<Address> findByCountryId(int countryId);
 		

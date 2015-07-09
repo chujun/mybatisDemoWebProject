@@ -2,8 +2,6 @@ package com.chujun.practice.mybatis.test;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.event.ListSelectionEvent;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -44,12 +42,13 @@ public class Test {
 			user=new User();
 			user.setUserName("chujiaqi");
 			user.setUserAge(24);
-			user.setUserAddress("甘棠镇");
+			user.setUserAddress("anhui,huangshan");
 			user.setCreateTime(new Date());
 			user.setEmployTime(new Date());
 			UserMapper mapper = session.getMapper(UserMapper.class);
 			int inserted=mapper.insert(user);
 			System.out.print(inserted);
+			session.commit();
 			session.close();
 		} finally {
 			session.close();
