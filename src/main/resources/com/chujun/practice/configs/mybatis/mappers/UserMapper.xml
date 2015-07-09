@@ -11,6 +11,7 @@
 		<result property="createTime" column="create_time" javaType="date" />
 		<result property="employTime" column="employ_time" javaType="date" jdbcType="INTEGER"
 			typeHandler="CustomTimeStampHandler" />
+	    <result property="employStatus" column="employ_status"/>
 	</resultMap>
 	<select id="selectUserByID" parameterType="int" resultMap="userResultMap">
 		select
@@ -31,18 +32,20 @@
 	</select>
 	
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="user">
-	   INSERT INTO `user`(`user_name`,`user_age`,`user_address`,`create_time`,`employ_time`)
-        VALUES (#{userName},#{userAge},#{userAddress},#{createTime},#{employTime,typeHandler=CustomTimeStampHandler});
+	   INSERT INTO `user`(`user_name`,`user_age`,`user_address`,`create_time`,`employ_time`,`employ_status`)
+        VALUES (#{userName},#{userAge},#{userAddress},#{createTime},
+        #{employTime,typeHandler=CustomTimeStampHandler},#{employStatus});
 	</insert>
 	
 	<update id="update">
 	   update user
 	   set user_name=#{userName},user_age=#{userAge},user_address=#{userAddress},
-     	   create_time=#{createTime},employ_time=#{employTime,typeHandler=CustomTimeStampHandler}
+     	   create_time=#{createTime},employ_time=#{employTime,typeHandler=CustomTimeStampHandler},
+     	   employ_status=#{employStatus}
 	   where id=#{id}
 	</update>
 
 	<sql id="base_sql">
-		id,user_name,user_age,user_address,create_time,employ_time
+		id,user_name,user_age,user_address,create_time,employ_time,employ_status
 	</sql>
 </mapper>

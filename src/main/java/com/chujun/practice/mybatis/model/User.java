@@ -8,6 +8,8 @@ package com.chujun.practice.mybatis.model;
 
 import java.util.Date;
 
+import com.chujun.practice.mybatis.util.constant.EmployStatus;
+
 public class User {
 	private int id;
     private String userName;
@@ -15,6 +17,7 @@ public class User {
     private String userAddress;
     private Date createTime;
     private Date employTime;
+    private EmployStatus employStatus;
     public int getId() {
         return id;
     }
@@ -53,11 +56,20 @@ public class User {
 	public void setEmployTime(Date employTime) {
 		this.employTime = employTime;
 	}
+	
+	
+	public EmployStatus getEmployStatus() {
+		return employStatus;
+	}
+	public void setEmployStatus(EmployStatus employStatus) {
+		this.employStatus = employStatus;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", userAge="
 				+ userAge + ", userAddress=" + userAddress + ", createTime="
-				+ createTime + ", employTime=" + employTime + "]";
-	}
+				+ createTime + ", employTime=" + employTime + ", employStatus="
+				+ employStatus + "]";
+	}	
 		
 }

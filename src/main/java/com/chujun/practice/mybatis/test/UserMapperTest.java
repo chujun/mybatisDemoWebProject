@@ -17,6 +17,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.chujun.practice.mybatis.factory.CreateSqlSessionFactory;
 import com.chujun.practice.mybatis.mapper.UserMapper;
 import com.chujun.practice.mybatis.model.User;
+import com.chujun.practice.mybatis.util.constant.EmployStatus;
 
 public class UserMapperTest extends TestCase {
 	private static SqlSessionFactory sqlSessionFactory;	
@@ -29,7 +30,7 @@ public class UserMapperTest extends TestCase {
 		}
 	}
 	
-	public void testFindByUserId(){
+	public void testFindAll(){
 		SqlSession session = sqlSessionFactory.openSession();
 		UserMapper mapper = session.getMapper(UserMapper.class);
 		List<User> useres = mapper.findAll();
@@ -45,6 +46,7 @@ public class UserMapperTest extends TestCase {
 		user.setUserAddress("anhui,huangshan");
 		user.setCreateTime(new Date());
 		user.setEmployTime(new Date());
+		user.setEmployStatus(EmployStatus.NORMAL);
 		UserMapper mapper = session.getMapper(UserMapper.class);
 		mapper.insert(user);
 		//System.out.print(useres);
@@ -57,7 +59,7 @@ public class UserMapperTest extends TestCase {
 		UserMapper userMapper = session.getMapper(UserMapper.class);	
 		User user = userMapper.findById(11);
 		user.setUserAddress("anhui,huangshan");
-		int updated = userMapper.update(user);
+		userMapper.update(user);
 		session.commit();
 		session.close();
 	}

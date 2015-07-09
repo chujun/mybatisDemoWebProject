@@ -8,6 +8,11 @@ package com.chujun.practice.mybatis.mapper;
 
 import java.util.List;
 
+/**
+ * @author chujun
+ * 通用查询接口
+ * @param <T>
+ */
 public interface GenericMapper<T> {
 	T findById(int id);
 	
