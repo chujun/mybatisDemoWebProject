@@ -40,18 +40,18 @@ insert  into `address`(`id`,`continent`,`country_ref`,`country_name`,`province`,
 DROP TABLE IF EXISTS `author`;
 
 CREATE TABLE `author` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(15) NOT NULL DEFAULT '""',
   `password` varchar(15) NOT NULL DEFAULT '"123456"',
   `email` varchar(30) NOT NULL DEFAULT '""',
   `bio` varchar(20) NOT NULL DEFAULT '""',
   `favourite_section` varchar(30) NOT NULL DEFAULT '""',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='作者';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='作者';
 
 /*Data for the table `author` */
 
-insert  into `author`(`id`,`user_name`,`password`,`email`,`bio`,`favourite_section`) values (1,'\"储骏\"','\"123456\"','\"173234532@qq.com\"','\"\"','\"\"');
+insert  into `author`(`id`,`user_name`,`password`,`email`,`bio`,`favourite_section`) values (1,'\"储骏\"','\"123456\"','\"173234532@qq.com\"','\"\"','\"IT\"'),(2,'\"汪彬\"','\"123456\"','\"1534554345@qq.com\"','\"\"','\"园林\"');
 
 /*Table structure for table `blog` */
 
@@ -60,13 +60,14 @@ DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(20) NOT NULL DEFAULT '""',
-  `author_id` varchar(20) NOT NULL DEFAULT '""',
+  `author_id` bigint(20) NOT NULL DEFAULT '0',
+  `co_author_id` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `blog` */
 
-insert  into `blog`(`id`,`title`,`author_id`) values (1,'仙境源地','1');
+insert  into `blog`(`id`,`title`,`author_id`,`co_author_id`) values (1,'仙境源地',2,1),(2,'天空',1,2);
 
 /*Table structure for table `comment` */
 
