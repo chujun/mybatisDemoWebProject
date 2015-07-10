@@ -12,6 +12,9 @@ import com.chujun.practice.mybatis.domain.Blog;
 public class BlogInfo extends Blog{
 	private Author author;
 	
+	public BlogInfo(){
+		
+	}
 	public BlogInfo(long id){
 		this.setId(id);
 	}

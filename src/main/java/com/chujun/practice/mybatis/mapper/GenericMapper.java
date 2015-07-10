@@ -14,7 +14,7 @@ import java.util.List;
  * @param <T>
  */
 public interface GenericMapper<T> {
-	T findById(int id);
+	T findById(long id);
 	
 	List<T> findAll();
 	

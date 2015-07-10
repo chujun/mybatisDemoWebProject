@@ -3,41 +3,71 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chujun.practice.mybatis.mapper.BlogInfoMapper">
 	<resultMap type="BlogInfo" id="detailedBlogResultMap">
-	    <constructor>
-	       <idArg column="blog_id" javaType="_long"/>
-	    </constructor>
+		<constructor>
+			<idArg column="blog_id" javaType="_long" />
+		</constructor>
 		<!-- <id property="id" column="blog_id"/> -->
-		<result property="title" column="title"/>
-		<result property="authorId" column="author_id"/>
-		<association property="author" javaType="Author">
-		    <id property="id" column="user_id"/>
+		<result property="title" column="title" />
+		<result property="authorId" column="author_id" />
+		<association property="author" column="user_id" javaType="Author">
+			<id property="id" column="user_id" />
 			<result property="userName" column="user_name" />
 			<result property="password" column="password" />
 			<result property="email" column="email" />
 			<result property="bio" column="bio" />
 			<result property="favouriteSection" column="favourite_section" />
 		</association>
-	</resultMap>	
-		
-	<select id="findById" parameterType="int" resultMap="detailedBlogResultMap">
+	</resultMap>
+	
+	<resultMap type="BlogInfo" id="detailedBlogResultMap2">
+        <id property="id" column="blog_id"/> 
+        <result property="title" column="title" />
+        <result property="authorId" column="author_id" />
+        <!--增加一次gps,提高单次查询效率，-->
+        <association property="author" column="user_id" select="findAuthorById">
+        </association>
+    </resultMap>
+
+	<resultMap type="Author" id="authorResultMap">
+		<id property="id" column="id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="email" column="email" />
+		<result property="bio" column="bio" />
+		<result property="favouriteSection" column="favourite_section" />
+	</resultMap>
+
+	<select id="findById" parameterType="long" resultMap="detailedBlogResultMap">
 		select
-		<include refid="blog_sql" />,<include refid="author_sql"/>
+		<include refid="blog_sql" />
+		,
+		<include refid="author_sql" />
 		from blog b
 		left join author user on b.author_id=user.id
-		where b.id=#{id}
+		where
+		b.id=#{id}
+	</select>
+
+	<select id="findAll" resultMap="detailedBlogResultMap">
+		select
+		<include refid="blog_sql" />
+		,
+		<include refid="author_sql" />
+		from blog b
+		left join author user on b.author_id=user.id
 	</select>
 	
-	<select id="findAll" parameterType="int" resultMap="detailedBlogResultMap">
-        select
-        <include refid="blog_sql" />,<include refid="author_sql"/>
-        from blog b
-        left join author user on b.author_id=user.id        
-    </select>
-    
+	<select id="findAuthorById" parameterType="long" resultMap="authorResultMap">
+	   select <include refid="author_sql"/>
+	   from author user
+	   where user.id=#{id}
+	</select>
+
 	<sql id="blog_sql">
 		b.`id` as blog_id,b.`title`,b.`author_id`
 	</sql>
 	<sql id="author_sql">
-	   user.`id` as user_id,user.`user_name`,user.`password`,user.`email`,user.`bio`,user.`favourite_section`
+		user.`id` as
+		user_id,user.`user_name`,user.`password`,user.`email`,user.`bio`,user.`favourite_section`
 	</sql>
 </mapper>

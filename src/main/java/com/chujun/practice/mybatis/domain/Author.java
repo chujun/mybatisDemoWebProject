@@ -6,7 +6,7 @@
 */
 package com.chujun.practice.mybatis.domain;
 public class Author {
-	private int id;
+	private long id;
 	
 	private String userName;
 	
@@ -18,11 +18,11 @@ public class Author {
 	
 	private String favouriteSection;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -64,29 +64,6 @@ public class Author {
 
 	public void setFavouriteSection(String favouriteSection) {
 		this.favouriteSection = favouriteSection;
-	}
-
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Author other = (Author) obj;
-		if (id != other.id)
-			return false;
-		return true;
 	}
 
 	@Override
