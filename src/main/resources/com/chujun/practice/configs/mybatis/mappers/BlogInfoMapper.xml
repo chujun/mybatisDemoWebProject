@@ -19,7 +19,7 @@
 			<result property="favouriteSection" column="favourite_section" />
 		</association>
 		<association property="coAuthor" column="co_author_id" javaType="Author">
-		    <id property="id" column="co_id" />
+		    <id property="id" column="co_user_id" />
             <result property="userName" column="co_user_name" />
             <result property="password" column="co_password" />
             <result property="email" column="co_email" />
@@ -34,7 +34,9 @@
         <result property="authorId" column="author_id" />
         <result property="coAuthorId" column="co_author_id" />
         <!--嵌套查询，增加一次gps,提高单次查询效率，-->
-        <association property="author" column="user_id" select="findAuthorById">
+        <association property="author" column="author_id" select="findAuthorById">
+        </association>
+        <association property="coAuthor" column="co_author_id" select="findAuthorById">
         </association>
     </resultMap>
     
@@ -48,6 +50,8 @@
         <result property="coAuthorId" column="co_author_id" />
         <!-- 嵌套映射resultMap -->
         <association property="author" column="author_id" javaType="Author" resultMap="authorResultMap"/>
+        <!-- columnPrefix:列名前缀使用 -->
+        <association property="coAuthor" column="co_author_id" javaType="Author" resultMap="authorResultMap" columnPrefix="co_"/>
     </resultMap>
     
 	<resultMap type="Author" id="authorResultMap">
@@ -59,7 +63,7 @@
 		<result property="favouriteSection" column="favourite_section" />
 	</resultMap>
 
-	<select id="findById" parameterType="long" resultMap="detailedBlogResultMap">
+	<select id="findById" parameterType="long" resultMap="detailedBlogResultMap2">
 		select
 		<include refid="blog_sql" />
 		,
@@ -94,7 +98,7 @@
 		user.`id` as user_id,user.`user_name`,user.`password`,user.`email`,user.`bio`,user.`favourite_section`
 	</sql>
 	<sql id="co_author_sql">
-        co_user.`id` as co_id,
+        co_user.`id` as co_user_id,
         co_user.`user_name` as co_user_name,
         co_user.`password` as co_password,
         co_user.`email` as co_email,
