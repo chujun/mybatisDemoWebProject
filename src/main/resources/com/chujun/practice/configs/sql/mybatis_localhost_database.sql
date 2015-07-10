@@ -35,6 +35,54 @@ CREATE TABLE `address` (
 
 insert  into `address`(`id`,`continent`,`country_ref`,`country_name`,`province`,`city`,`area`) values (1,'亚洲',1,'中国','安徽','黄山市','黄山区'),(2,'亚洲',1,'中国','安徽','六安','霍山'),(3,'亚洲',1,'中国','安徽','六安','霍邱');
 
+/*Table structure for table `author` */
+
+DROP TABLE IF EXISTS `author`;
+
+CREATE TABLE `author` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(15) NOT NULL DEFAULT '""',
+  `password` varchar(15) NOT NULL DEFAULT '"123456"',
+  `email` varchar(30) NOT NULL DEFAULT '""',
+  `bio` varchar(20) NOT NULL DEFAULT '""',
+  `favourite_section` varchar(30) NOT NULL DEFAULT '""',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='作者';
+
+/*Data for the table `author` */
+
+insert  into `author`(`id`,`user_name`,`password`,`email`,`bio`,`favourite_section`) values (1,'\"储骏\"','\"123456\"','\"173234532@qq.com\"','\"\"','\"\"');
+
+/*Table structure for table `blog` */
+
+DROP TABLE IF EXISTS `blog`;
+
+CREATE TABLE `blog` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) NOT NULL DEFAULT '""',
+  `author_id` varchar(20) NOT NULL DEFAULT '""',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `blog` */
+
+insert  into `blog`(`id`,`title`,`author_id`) values (1,'仙境源地','1');
+
+/*Table structure for table `comment` */
+
+DROP TABLE IF EXISTS `comment`;
+
+CREATE TABLE `comment` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) NOT NULL DEFAULT '0',
+  `name` varchar(20) NOT NULL DEFAULT '""',
+  `comment` varchar(500) NOT NULL DEFAULT '""',
+  `create_time` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `comment` */
+
 /*Table structure for table `detail_address` */
 
 DROP TABLE IF EXISTS `detail_address`;
@@ -50,6 +98,36 @@ CREATE TABLE `detail_address` (
 /*Data for the table `detail_address` */
 
 insert  into `detail_address`(`id`,`user_id`,`address_id`,`detail`) values (1,2,1,'仙源镇老街'),(2,3,1,'仙源镇南关'),(3,4,3,NULL);
+
+/*Table structure for table `post` */
+
+DROP TABLE IF EXISTS `post`;
+
+CREATE TABLE `post` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `blog_id` bigint(20) NOT NULL DEFAULT '0',
+  `author_id` int(12) NOT NULL DEFAULT '0',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `section` varchar(20) COLLATE utf8_esperanto_ci NOT NULL DEFAULT '""',
+  `subject` varchar(20) COLLATE utf8_esperanto_ci NOT NULL DEFAULT '""',
+  `draft` varchar(20) COLLATE utf8_esperanto_ci NOT NULL DEFAULT '""',
+  `body` text COLLATE utf8_esperanto_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_esperanto_ci;
+
+/*Data for the table `post` */
+
+/*Table structure for table `tag` */
+
+DROP TABLE IF EXISTS `tag`;
+
+CREATE TABLE `tag` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL DEFAULT '""',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `tag` */
 
 /*Table structure for table `user` */
 

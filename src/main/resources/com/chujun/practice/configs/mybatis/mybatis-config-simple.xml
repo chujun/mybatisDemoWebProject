@@ -31,6 +31,7 @@
 			/> -->
 		<!-- 每一个在包中的java Bean，在没有注解的情况下，会使用Bean的首字母小写的非限定类名来作为它的别名 -->
 		<package name="com.chujun.practice.mybatis.domain" />
+		<package name="com.chujun.practice.mybatis.model" />
 		<!-- <typeAlias alias="Address" type="com.chujun.practice.mybatis.model.Address"/> -->
 	</typeAliases>
 	<typeHandlers>
@@ -63,8 +64,8 @@
 	<mappers>
 		<!-- fisrt way:resource -->
 		<mapper resource="com/chujun/practice/configs/mybatis/mappers/UserMapper.xml" />
-		<mapper
-			resource="com/chujun/practice/configs/mybatis/mappers/AddressMapper.xml" />
+		<mapper resource="com/chujun/practice/configs/mybatis/mappers/AddressMapper.xml" />
+		<mapper resource="com/chujun/practice/configs/mybatis/mappers/BlogInfoMapper.xml" />
 		<!-- second way:class path -->
 		<!-- <mapper class="com.chujun.practice.mybatis.mapper.AddressMapper"/> -->
 		<!-- third way:url -->

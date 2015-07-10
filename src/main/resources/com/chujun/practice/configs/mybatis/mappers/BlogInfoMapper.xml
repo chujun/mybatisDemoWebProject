@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chujun.practice.mybatis.mapper.BlogInfoMapper">
+	<select id="findById" resultType="blogInfo">
+        select <include refid="blog_sql"/>
+        from blog b
+	</select>
+	<sql id="blog_sql">
+		`id`,`title`,`author_id`
+	</sql>
+</mapper>
