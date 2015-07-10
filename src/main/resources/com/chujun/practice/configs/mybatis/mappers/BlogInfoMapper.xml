@@ -18,6 +18,14 @@
 			<result property="bio" column="bio" />
 			<result property="favouriteSection" column="favourite_section" />
 		</association>
+		<association property="coAuthor" column="co_author_id" javaType="Author">
+		    <id property="id" column="co_id" />
+            <result property="userName" column="co_user_name" />
+            <result property="password" column="co_password" />
+            <result property="email" column="co_email" />
+            <result property="bio" column="co_bio" />
+            <result property="favouriteSection" column="co_favourite_section" />
+		</association>
 	</resultMap>
 	
 	<resultMap type="BlogInfo" id="detailedBlogResultMap2">
@@ -41,7 +49,6 @@
         <!-- 嵌套映射resultMap -->
         <association property="author" column="author_id" javaType="Author" resultMap="authorResultMap"/>
     </resultMap>
-
     
 	<resultMap type="Author" id="authorResultMap">
 		<id property="id" column="user_id" />
@@ -52,13 +59,15 @@
 		<result property="favouriteSection" column="favourite_section" />
 	</resultMap>
 
-	<select id="findById" parameterType="long" resultMap="detailedBlogResultMap3">
+	<select id="findById" parameterType="long" resultMap="detailedBlogResultMap">
 		select
 		<include refid="blog_sql" />
 		,
-		<include refid="author_sql" />
+		<include refid="author_sql" />,
+		<include refid="co_author_sql"/>
 		from blog b
 		left join author user on b.author_id=user.id
+		left join author co_user on b.co_author_id=co_user.id
 		where
 		b.id=#{id}
 	</select>
@@ -84,4 +93,12 @@
 	<sql id="author_sql">
 		user.`id` as user_id,user.`user_name`,user.`password`,user.`email`,user.`bio`,user.`favourite_section`
 	</sql>
+	<sql id="co_author_sql">
+        co_user.`id` as co_id,
+        co_user.`user_name` as co_user_name,
+        co_user.`password` as co_password,
+        co_user.`email` as co_email,
+        co_user.`bio` as co_bio,
+        co_user.`favourite_section` as co_favourite_section
+    </sql>
 </mapper>

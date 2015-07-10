@@ -12,6 +12,8 @@ import com.chujun.practice.mybatis.domain.Blog;
 public class BlogInfo extends Blog{
 	private Author author;
 		
+	private Author coAuthor;
+	
 	public BlogInfo(){
 		
 	}
@@ -26,10 +28,16 @@ public class BlogInfo extends Blog{
 		this.author = author;
 	}
 
+	public Author getCoAuthor() {
+		return coAuthor;
+	}
+	public void setCoAuthor(Author coAuthor) {
+		this.coAuthor = coAuthor;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();		
-		builder.append("BlogInfo [").append(super.toString()).append("author=").append(author).append("]");
+		builder.append("BlogInfo [").append(super.toString()).append("author=").append(author).append("coAuthor=").append(coAuthor).append("]");
 		return builder.toString();
 	}
 	
