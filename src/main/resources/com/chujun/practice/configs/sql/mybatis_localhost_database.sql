@@ -47,11 +47,11 @@ CREATE TABLE `author` (
   `bio` varchar(20) NOT NULL DEFAULT '""',
   `favourite_section` varchar(30) NOT NULL DEFAULT '""',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='作者';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='作者';
 
 /*Data for the table `author` */
 
-insert  into `author`(`id`,`user_name`,`password`,`email`,`bio`,`favourite_section`) values (1,'\"储骏\"','\"123456\"','\"173234532@qq.com\"','\"\"','\"IT\"'),(2,'\"汪彬\"','\"123456\"','\"1534554345@qq.com\"','\"\"','\"园林\"');
+insert  into `author`(`id`,`user_name`,`password`,`email`,`bio`,`favourite_section`) values (1,'\"储骏\"','\"123456\"','\"173234532@qq.com\"','\"\"','\"IT\"'),(2,'\"汪彬\"','\"123456\"','\"1534554345@qq.com\"','\"\"','\"园林\"'),(3,'\"李廷\"','\"123456\"','\"1034234@qq.com\"','\"\"','\"PHP\"');
 
 /*Table structure for table `blog` */
 
@@ -63,11 +63,11 @@ CREATE TABLE `blog` (
   `author_id` bigint(20) NOT NULL DEFAULT '0',
   `co_author_id` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `blog` */
 
-insert  into `blog`(`id`,`title`,`author_id`,`co_author_id`) values (1,'仙境源地',2,1),(2,'天空',1,2);
+insert  into `blog`(`id`,`title`,`author_id`,`co_author_id`) values (1,'仙境源地',2,1),(2,'天空',1,2),(3,'youth90',3,0);
 
 /*Table structure for table `comment` */
 
