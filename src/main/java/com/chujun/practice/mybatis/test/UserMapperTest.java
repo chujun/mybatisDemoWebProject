@@ -6,6 +6,7 @@
 */
 package com.chujun.practice.mybatis.test;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +15,10 @@ import junit.framework.TestCase;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.chujun.practice.mybatis.domain.User;
 import com.chujun.practice.mybatis.factory.CreateSqlSessionFactory;
 import com.chujun.practice.mybatis.mapper.UserMapper;
-import com.chujun.practice.mybatis.model.User;
+import com.chujun.practice.mybatis.model.UserInfo;
 import com.chujun.practice.mybatis.util.constant.EmployStatus;
 
 public class UserMapperTest extends TestCase {
@@ -47,6 +49,7 @@ public class UserMapperTest extends TestCase {
 		user.setCreateTime(new Date());
 		user.setEmployTime(new Date());
 		user.setEmployStatus(EmployStatus.NORMAL);
+		user.setSalary(new BigDecimal(12345.353));
 		UserMapper mapper = session.getMapper(UserMapper.class);
 		mapper.insert(user);
 		//System.out.print(useres);
@@ -59,6 +62,7 @@ public class UserMapperTest extends TestCase {
 		UserMapper userMapper = session.getMapper(UserMapper.class);	
 		User user = userMapper.findById(11);
 		user.setUserAddress("anhui,huangshan");
+		user.setSalary(new BigDecimal(12345.353));
 		userMapper.update(user);
 		session.commit();
 		session.close();
@@ -79,5 +83,14 @@ public class UserMapperTest extends TestCase {
 	    userMapper.deleteById(21);		
 		session.commit();
 		session.close();
+	}
+	
+	public void testFindUserInfoAll(){
+		/*SqlSession session = sqlSessionFactory.openSession();
+		UserMapper userMapper = session.getMapper(UserMapper.class);	
+	    List<UserInfo> userInfos = userMapper.findUserInfoAll();
+	    System.out.println(userInfos);
+		session.commit();
+		session.close();*/
 	}
 }

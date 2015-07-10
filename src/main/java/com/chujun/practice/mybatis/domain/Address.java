@@ -4,7 +4,7 @@
 * Date: 2015-7-8
 * Description: 
 */
-package com.chujun.practice.mybatis.model;
+package com.chujun.practice.mybatis.domain;
 
 import java.io.Serializable;
 

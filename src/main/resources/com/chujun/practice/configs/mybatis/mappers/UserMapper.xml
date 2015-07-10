@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chujun.practice.mybatis.mapper.UserMapper">
-
+    
 	<resultMap type="User" id="userResultMap">
 		<id property="id" column="id" />
 		<result property="userName" column="user_name" />
@@ -12,16 +12,17 @@
 		<result property="employTime" column="employ_time" javaType="date" jdbcType="INTEGER"
 			typeHandler="CustomTimeStampHandler" />
 	    <result property="employStatus" column="employ_status"/>
+	    <result property="salary" column="salary"/>
 	</resultMap>	
     
 	<select id="selectUserByID" parameterType="int" resultMap="userResultMap" flushCache="false" useCache="true"
-	timeout="20000" >
+	timeout="20">
 		select
 		<include refid="base_sql" />
 		from `user` where id = #{id}
 	</select>	
 
-    <select id="findById" resultMap="userResultMap">
+    <select id="findById" resultMap="userResultMap">        
         select <include refid="base_sql"/>
         from user
         where id=#{id}
@@ -29,21 +30,27 @@
     
 	<select id="findAll" resultMap="userResultMap">
 		select
-		<include refid="base_sql" />
+		<include refid="base_sql"/>
 		from user
 	</select>
 	
+	<!-- <select id="findUserInfoAll">
+	   select 
+	   <include refid="user_sql"><property name="alias" value="t1"/></include>
+	   from user t1
+	</select> -->
+	
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="user">
-	   INSERT INTO `user`(`user_name`,`user_age`,`user_address`,`create_time`,`employ_time`,`employ_status`)
+	   INSERT INTO `user`(`user_name`,`user_age`,`user_address`,`create_time`,`employ_time`,`employ_status`,`salary`)
         VALUES (#{userName},#{userAge},#{userAddress},#{createTime},
-        #{employTime,typeHandler=CustomTimeStampHandler},#{employStatus});
+        #{employTime,typeHandler=CustomTimeStampHandler},#{employStatus},#{salary});
 	</insert>
 	
 	<update id="update">
 	   update user
 	   set user_name=#{userName},user_age=#{userAge},user_address=#{userAddress},
      	   create_time=#{createTime},employ_time=#{employTime,typeHandler=CustomTimeStampHandler},
-     	   employ_status=#{employStatus}
+     	   employ_status=#{employStatus},salary=#{salary}
 	   where id=#{id}
 	</update>
 
@@ -52,7 +59,7 @@
             update user
             set user_name=#{user.userName},user_age=#{user.userAge},user_address=#{user.userAddress},
             create_time=#{user.createTime},employ_time=#{user.employTime,typeHandler=CustomTimeStampHandler},
-            employ_status=#{user.employStatus}
+            employ_status=#{user.employStatus},salary=#{user.salary}
             where id=#{user.id}
         </foreach>
     </update>
@@ -61,6 +68,11 @@
         where id=#{id}
     </delete>
 	<sql id="base_sql">
-		id,user_name,user_age,user_address,create_time,employ_time,employ_status
+		id,user_name,user_age,user_address,create_time,employ_time,employ_status,salary
+	</sql>
+	
+	<sql id="user_sql">
+	   ${alias}.id,${alias}.user_name,${alias}.user_age,${alias}.user_address,${alias}.create_time,${alias}.employ_time,${alias}.employ_status
+	   ${alias}.salary
 	</sql>
 </mapper>

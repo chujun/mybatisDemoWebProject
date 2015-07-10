@@ -11,9 +11,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.chujun.practice.mybatis.domain.Address;
 import com.chujun.practice.mybatis.factory.CreateSqlSessionFactory;
 import com.chujun.practice.mybatis.mapper.AddressMapper;
-import com.chujun.practice.mybatis.model.Address;
 
 import junit.framework.TestCase;
 

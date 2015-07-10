@@ -10,7 +10,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.chujun.practice.mybatis.model.User;
+import com.chujun.practice.mybatis.domain.User;
+import com.chujun.practice.mybatis.model.UserInfo;
 
 public interface UserMapper extends GenericMapper<User>{
 		
@@ -21,4 +22,5 @@ public interface UserMapper extends GenericMapper<User>{
 	
 	int batchUpdate(List<User> users);
 
+	List<UserInfo> findUserInfoAll();
 }

@@ -8,7 +8,7 @@ package com.chujun.practice.mybatis.mapper;
 
 import java.util.List;
 
-import com.chujun.practice.mybatis.model.Address;
+import com.chujun.practice.mybatis.domain.Address;
 
 public interface AddressMapper extends GenericMapper<Address> {
 		

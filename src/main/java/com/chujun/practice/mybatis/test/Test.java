@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.chujun.practice.mybatis.domain.User;
 import com.chujun.practice.mybatis.factory.CreateSqlSessionFactory;
 import com.chujun.practice.mybatis.mapper.UserMapper;
-import com.chujun.practice.mybatis.model.User;
 
 public class Test {
 	private static SqlSessionFactory sqlSessionFactory;	

@@ -30,7 +30,7 @@
 		<!-- <typeAlias alias="User" type="com.chujun.practice.mybatis.model.User" 
 			/> -->
 		<!-- 每一个在包中的java Bean，在没有注解的情况下，会使用Bean的首字母小写的非限定类名来作为它的别名 -->
-		<package name="com.chujun.practice.mybatis.model" />
+		<package name="com.chujun.practice.mybatis.domain" />
 		<!-- <typeAlias alias="Address" type="com.chujun.practice.mybatis.model.Address"/> -->
 	</typeAliases>
 	<typeHandlers>
