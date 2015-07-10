@@ -3,11 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chujun.practice.mybatis.mapper.BlogInfoMapper">
 	<resultMap type="BlogInfo" id="detailedBlogResultMap">
-		<id property="id" column="blog_id"/>
+	    <constructor>
+	       <idArg column="blog_id" javaType="_long"/>
+	    </constructor>
+		<!-- <id property="id" column="blog_id"/> -->
 		<result property="title" column="title"/>
 		<result property="authorId" column="author_id"/>
 		<association property="author" javaType="Author">
-		     <id property="id" column="user_id"/>
+		    <id property="id" column="user_id"/>
 			<result property="userName" column="user_name" />
 			<result property="password" column="password" />
 			<result property="email" column="email" />

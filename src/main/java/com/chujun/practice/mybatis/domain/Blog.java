@@ -11,7 +11,7 @@ public class Blog {
 	private String title;
 	
 	private int authorId;
-
+	
 	public long getId() {
 		return id;
 	}
