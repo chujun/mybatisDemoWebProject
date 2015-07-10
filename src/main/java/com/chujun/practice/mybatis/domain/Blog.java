@@ -10,7 +10,7 @@ public class Blog {
 	
 	private String title;
 	
-	private int author_id;
+	private int authorId;
 
 	public long getId() {
 		return id;
@@ -28,20 +28,22 @@ public class Blog {
 		this.title = title;
 	}
 
-	public int getAuthor_id() {
-		return author_id;
+	
+
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Blog [id=").append(id).append(", title=").append(title)
-				.append(", author_id=").append(author_id).append("]");
+				.append(", authorId=").append(authorId).append("]");
 		return builder.toString();
-	}
+	}	
 		
 }

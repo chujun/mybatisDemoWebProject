@@ -6,6 +6,8 @@
  */
 package com.chujun.practice.mybatis.test;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,7 +28,13 @@ public class BlogInfoMapperTest extends TestCase {
 			e.printStackTrace();
 		}
 	}
-
+	public void testFindAll() {
+		SqlSession session = sqlSessionFactory.openSession();
+		BlogInfoMapper mapper = session.getMapper(BlogInfoMapper.class);
+		List<BlogInfo> blogs = mapper.findAll();
+		System.out.print(blogs);
+	}
+	
 	public void testFindByBlogId() {
 		SqlSession session = sqlSessionFactory.openSession();
 		BlogInfoMapper mapper = session.getMapper(BlogInfoMapper.class);

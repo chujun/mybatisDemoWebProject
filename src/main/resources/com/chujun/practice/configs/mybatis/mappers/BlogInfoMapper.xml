@@ -2,11 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chujun.practice.mybatis.mapper.BlogInfoMapper">
-	<select id="findById" resultType="blogInfo">
-        select <include refid="blog_sql"/>
-        from blog b
+	<resultMap type="BlogInfo" id="detailedBlogResultMap">
+		<id property="id" column="blog_id"/>
+		<result property="title" column="title"/>
+		<result property="authorId" column="author_id"/>
+		<association property="author" javaType="Author">
+		     <id property="id" column="user_id"/>
+			<result property="userName" column="user_name" />
+			<result property="password" column="password" />
+			<result property="email" column="email" />
+			<result property="bio" column="bio" />
+			<result property="favouriteSection" column="favourite_section" />
+		</association>
+	</resultMap>	
+		
+	<select id="findById" parameterType="int" resultMap="detailedBlogResultMap">
+		select
+		<include refid="blog_sql" />,<include refid="author_sql"/>
+		from blog b
+		left join author user on b.author_id=user.id
+		where b.id=#{id}
 	</select>
+	
+	<select id="findAll" parameterType="int" resultMap="detailedBlogResultMap">
+        select
+        <include refid="blog_sql" />,<include refid="author_sql"/>
+        from blog b
+        left join author user on b.author_id=user.id        
+    </select>
+    
 	<sql id="blog_sql">
-		`id`,`title`,`author_id`
+		b.`id` as blog_id,b.`title`,b.`author_id`
+	</sql>
+	<sql id="author_sql">
+	   user.`id` as user_id,user.`user_name`,user.`password`,user.`email`,user.`bio`,user.`favourite_section`
 	</sql>
 </mapper>
