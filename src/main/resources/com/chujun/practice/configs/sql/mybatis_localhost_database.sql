@@ -62,12 +62,14 @@ CREATE TABLE `user` (
   `user_address` varchar(200) NOT NULL DEFAULT '""',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `employ_time` bigint(20) NOT NULL DEFAULT '0',
+  `employ_status` smallint(4) NOT NULL DEFAULT '1' COMMENT '雇佣状态，0：正常，1：试用，2：离职',
+  `salary` decimal(10,2) NOT NULL DEFAULT '2000.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`user_name`,`user_age`,`user_address`,`create_time`,`employ_time`) values (1,'summer',100,'shanghai,pudong','2015-07-01 15:31:49',1),(2,'chujun',25,'anhui,huangshan','2015-07-07 15:31:47',2),(3,'wangbin',25,'anhui,huangshan','2015-07-05 15:31:45',3),(4,'liting',26,'anhui,liuan','2015-07-06 15:31:42',4),(5,'lichangfen',28,'shangdong,weifang','2015-07-07 15:31:40',5),(6,'wuqingfu',26,'anhui,liuan','2015-07-08 14:54:01',6);
+insert  into `user`(`id`,`user_name`,`user_age`,`user_address`,`create_time`,`employ_time`,`employ_status`,`salary`) values (1,'summer',100,'shanghai,pudong','2015-07-01 15:31:49',1036409160540,0,2000.00),(2,'chujun',25,'anhui,huangshan','2015-07-07 15:31:47',1236209160540,0,2000.00),(3,'wangbin',25,'anhui,huangshan','2015-07-05 15:31:45',1434409160540,0,2000.00),(4,'liting',26,'anhui,liuan','2015-07-06 15:31:42',1436407160540,0,2000.00),(5,'lichangfen',28,'shangdong,weifang','2015-07-07 15:31:40',1236409160540,0,2000.00),(6,'wuqingfu',26,'anhui,liuan','2015-07-08 14:54:01',1336409160540,1,2000.00),(11,'chujiaqi',24,'anhui,huangshan','2015-07-09 11:39:00',1436413140945,2,12345.35),(29,'chujiaqi',24,'anhui,huangshan','2015-07-10 11:14:09',1436498049125,0,12345.35);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
