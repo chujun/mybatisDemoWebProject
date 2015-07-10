@@ -10,8 +10,12 @@ public class Blog {
 	
 	private String title;
 	
-	private int authorId;
+	private long authorId;
 	
+	/**
+	 * 合作作者
+	 */
+	private long coAuthorId;
 	public long getId() {
 		return id;
 	}
@@ -28,22 +32,28 @@ public class Blog {
 		this.title = title;
 	}
 
-	
-
-	public int getAuthorId() {
+	public long getAuthorId() {
 		return authorId;
 	}
 
-	public void setAuthorId(int authorId) {
+	public void setAuthorId(long authorId) {
 		this.authorId = authorId;
+	}
+
+	public long getCoAuthorId() {
+		return coAuthorId;
+	}
+
+	public void setCoAuthorId(long coAuthorId) {
+		this.coAuthorId = coAuthorId;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Blog [id=").append(id).append(", title=").append(title)
-				.append(", authorId=").append(authorId).append("]");
+				.append(", authorId=").append(authorId).append(", coAuthorId=")
+				.append(coAuthorId).append("]");
 		return builder.toString();
 	}	
-		
 }

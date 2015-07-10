@@ -9,6 +9,7 @@
 		<!-- <id property="id" column="blog_id"/> -->
 		<result property="title" column="title" />
 		<result property="authorId" column="author_id" />
+		<result property="coAuthorId" column="co_author_id" />
 		<association property="author" column="author_id" javaType="Author">
 			<id property="id" column="user_id" />
 			<result property="userName" column="user_name" />
@@ -23,6 +24,7 @@
         <id property="id" column="blog_id"/> 
         <result property="title" column="title" />
         <result property="authorId" column="author_id" />
+        <result property="coAuthorId" column="co_author_id" />
         <!--嵌套查询，增加一次gps,提高单次查询效率，-->
         <association property="author" column="user_id" select="findAuthorById">
         </association>
@@ -35,6 +37,7 @@
         <!-- <id property="id" column="blog_id"/> -->
         <result property="title" column="title" />
         <result property="authorId" column="author_id" />
+        <result property="coAuthorId" column="co_author_id" />
         <!-- 嵌套映射resultMap -->
         <association property="author" column="author_id" javaType="Author" resultMap="authorResultMap"/>
     </resultMap>
@@ -76,7 +79,7 @@
 	</select>
 
 	<sql id="blog_sql">
-		b.`id` as blog_id,b.`title`,b.`author_id`
+		b.`id` as blog_id,b.`title`,b.`author_id`,b.co_author_id
 	</sql>
 	<sql id="author_sql">
 		user.`id` as user_id,user.`user_name`,user.`password`,user.`email`,user.`bio`,user.`favourite_section`
