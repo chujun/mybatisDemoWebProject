@@ -81,8 +81,11 @@
 		<include refid="blog_sql" />
 		,
 		<include refid="author_sql" />
+		,
+		<include refid="co_author_sql"/>
 		from blog b
 		left join author user on b.author_id=user.id
+		left join author co_user on b.co_author_id=co_user.id
 	</select>
 	
 	<select id="findAuthorById" parameterType="long" resultMap="authorResultMap">
