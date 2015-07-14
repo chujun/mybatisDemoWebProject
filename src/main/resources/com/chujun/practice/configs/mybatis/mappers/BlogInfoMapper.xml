@@ -26,6 +26,8 @@
             <result property="bio" column="co_bio" />
             <result property="favouriteSection" column="co_favourite_section" />
 		</association>
+		<collection property="posts" column="blog_id" ofType="Post" select="findPostByBlogId">
+		</collection>
 	</resultMap>
 	
 	<resultMap type="BlogInfo" id="detailedBlogResultMap2">
@@ -38,6 +40,8 @@
         </association>
         <association property="coAuthor" column="co_author_id" select="findAuthorById">
         </association>
+        <collection property="posts" column="blog_id" ofType="Post" select="findPostByBlogId">
+        </collection>
     </resultMap>
     
     <resultMap type="BlogInfo" id="detailedBlogResultMap3">
@@ -61,6 +65,17 @@
 		<result property="email" column="email" />
 		<result property="bio" column="bio" />
 		<result property="favouriteSection" column="favourite_section" />
+	</resultMap>
+	
+	<resultMap type="Post" id="postResultMap">
+	   <id property="id" column="id"/>
+	   <result property="blogId" column="blog_id"/>
+	   <result property="authorId" column="author_id"/>
+	   <result property="createTime" column="create_time"/>
+	   <result property="section" column="section"/>
+	   <result property="subject" column="subject"/>
+	   <result property="draft" column="draft"/>
+	   <result property="body" column="body"/>
 	</resultMap>
 
 	<select id="findById" parameterType="long" resultMap="detailedBlogResultMap2">
@@ -93,6 +108,12 @@
 	   from author user
 	   where user.id=#{id}
 	</select>
+	
+	<select id="findPostByBlogId" parameterType="long" resultMap="postResultMap">
+	   select <include refid="post_sql"/>
+	   from post 
+	   where blog_id=#{blogId}
+	</select>
 
 	<sql id="blog_sql">
 		b.`id` as blog_id,b.`title`,b.`author_id`,b.co_author_id
@@ -107,5 +128,18 @@
         co_user.`email` as co_email,
         co_user.`bio` as co_bio,
         co_user.`favourite_section` as co_favourite_section
+    </sql>
+    <sql id="post_sql_alias">
+        `id` as post_id,
+        `blog_id` as post_blog_id,
+        `author_id` as post_author_id,
+        `create_time` as post_create_time,
+        `section` as post_section,
+        `subject` as post_subject,
+        `draft` as post_draft,
+        `body` as post_body
+    </sql>
+    <sql id="post_sql">
+       `id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`
     </sql>
 </mapper>
