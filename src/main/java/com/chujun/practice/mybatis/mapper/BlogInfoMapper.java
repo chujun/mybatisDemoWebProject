@@ -5,7 +5,9 @@
 * Description: 
 */
 package com.chujun.practice.mybatis.mapper;
+import java.util.List;
+
 import com.chujun.practice.mybatis.model.BlogInfo;
 public interface BlogInfoMapper extends GenericMapper<BlogInfo>{
-	
+	List<BlogInfo> findAllLeftJoinPost();
 }

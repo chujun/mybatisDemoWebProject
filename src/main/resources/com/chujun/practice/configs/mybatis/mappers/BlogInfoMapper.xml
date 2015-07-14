@@ -26,7 +26,15 @@
             <result property="bio" column="co_bio" />
             <result property="favouriteSection" column="co_favourite_section" />
 		</association>
-		<collection property="posts" column="blog_id" ofType="Post" select="findPostByBlogId">
+		<collection property="posts"  ofType="Post" columnPrefix="post_">
+		    <id property="id" column="id"/>
+            <result property="blogId" column="blog_id"/>
+            <result property="authorId" column="author_id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="section" column="section"/>
+            <result property="subject" column="subject"/>
+            <result property="draft" column="draft"/>
+            <result property="body" column="body"/>
 		</collection>
 	</resultMap>
 	
@@ -56,6 +64,7 @@
         <association property="author" column="author_id" javaType="Author" resultMap="authorResultMap"/>
         <!-- columnPrefix:列名前缀使用 -->
         <association property="coAuthor" column="co_author_id" javaType="Author" resultMap="authorResultMap" columnPrefix="co_"/>
+        <collection property="posts" ofType="Post" resultMap="postResultMap" columnPrefix="post_"></collection>
     </resultMap>
     
 	<resultMap type="Author" id="authorResultMap">
@@ -91,7 +100,7 @@
 		b.id=#{id}
 	</select>
 
-	<select id="findAll" resultMap="detailedBlogResultMap">
+	<select id="findAll" resultMap="detailedBlogResultMap2">
 		select
 		<include refid="blog_sql" />
 		,
@@ -102,6 +111,22 @@
 		left join author user on b.author_id=user.id
 		left join author co_user on b.co_author_id=co_user.id
 	</select>
+	
+	
+	<select id="findAllLeftJoinPost" resultMap="detailedBlogResultMap3">
+        select
+        <include refid="blog_sql" />
+        ,
+        <include refid="author_sql" />
+        ,
+        <include refid="co_author_sql"/>
+        ,
+        <include refid="post_sql_alias"/>
+        from blog b
+        left join author user on b.author_id=user.id
+        left join author co_user on b.co_author_id=co_user.id
+        left join post po on b.id=po.blog_id
+    </select>
 	
 	<select id="findAuthorById" parameterType="long" resultMap="authorResultMap">
 	   select <include refid="author_sql"/>
@@ -130,14 +155,14 @@
         co_user.`favourite_section` as co_favourite_section
     </sql>
     <sql id="post_sql_alias">
-        `id` as post_id,
-        `blog_id` as post_blog_id,
-        `author_id` as post_author_id,
-        `create_time` as post_create_time,
-        `section` as post_section,
-        `subject` as post_subject,
-        `draft` as post_draft,
-        `body` as post_body
+        po.`id` as post_id,
+        po.`blog_id` as post_blog_id,
+        po.`author_id` as post_author_id,
+        po.`create_time` as post_create_time,
+        po.`section` as post_section,
+        po.`subject` as post_subject,
+        po.`draft` as post_draft,
+        po.`body` as post_body
     </sql>
     <sql id="post_sql">
        `id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`

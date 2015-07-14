@@ -41,4 +41,11 @@ public class BlogInfoMapperTest extends TestCase {
 		BlogInfo blogInfo = mapper.findById(1);
 		System.out.print(blogInfo);
 	}
+	
+	public void testFindAllLeftJoinPost() {
+		SqlSession session = sqlSessionFactory.openSession();
+		BlogInfoMapper mapper = session.getMapper(BlogInfoMapper.class);
+		List<BlogInfo> blogs = mapper.findAllLeftJoinPost();
+		System.out.print(blogs);
+	}
 }
