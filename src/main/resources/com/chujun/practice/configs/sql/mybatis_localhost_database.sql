@@ -169,11 +169,11 @@ CREATE TABLE `vehicle` (
   `box_size` smallint(2) NOT NULL DEFAULT '0',
   `extended_cab` varchar(10) NOT NULL DEFAULT '""',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='车辆';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='车辆';
 
 /*Data for the table `vehicle` */
 
-insert  into `vehicle`(`id`,`vin`,`year`,`make`,`model`,`color`,`type`,`door_count`,`all_wheel_drive`,`box_size`,`extended_cab`) values (1,'\"\"','1994','china','benchi','white',1,0,0,0,'\"\"');
+insert  into `vehicle`(`id`,`vin`,`year`,`make`,`model`,`color`,`type`,`door_count`,`all_wheel_drive`,`box_size`,`extended_cab`) values (1,'\"\"','1994','china','benchi','white',1,1,0,0,'\"\"'),(2,'\"\"','2004','china','qirui','black',2,4,1,0,'\"\"'),(3,'\"\"','2014','china','dazhong','black',3,4,1,0,'\"\"'),(4,'\"\"','2014','china','dazhong','black',3,4,1,0,'\"\"');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

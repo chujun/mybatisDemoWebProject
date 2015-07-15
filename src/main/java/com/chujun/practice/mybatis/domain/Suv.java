@@ -15,6 +15,12 @@ public class Suv extends Vehicle{
 	public void setAllWheelDrive(boolean allWheelDrive) {
 		this.allWheelDrive = allWheelDrive;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Suv [allWheelDrive=").append(allWheelDrive);
+		builder.append(",").append(super.toString()).append("]");
+		return builder.toString();
+	}	
 }

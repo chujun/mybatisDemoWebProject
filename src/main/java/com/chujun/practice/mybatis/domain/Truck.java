@@ -25,6 +25,14 @@ public class Truck extends Vehicle{
 	public void setExtendedCab(String extendedCab) {
 		this.extendedCab = extendedCab;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Truck [boxSize=").append(boxSize);		
+		builder.append(", extendedCab=").append(extendedCab);
+		builder.append(",").append(super.toString()).append("]");
+		return builder.toString();
+	}
+		
 }

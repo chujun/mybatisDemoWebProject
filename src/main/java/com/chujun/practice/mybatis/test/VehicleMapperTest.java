@@ -36,4 +36,11 @@ public class VehicleMapperTest extends TestCase {
 		Vehicle vehicle = mapper.findById(1);
 		System.out.print(vehicle);
 	}
+	
+	public void testFindAll() {
+		SqlSession session = sqlSessionFactory.openSession();
+		VehicleMapper mapper = session.getMapper(VehicleMapper.class);
+		List<Vehicle> vehicles = mapper.findAll();
+		System.out.print(vehicles);
+	}
 }
