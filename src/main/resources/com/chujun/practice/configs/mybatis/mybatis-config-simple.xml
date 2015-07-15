@@ -63,12 +63,15 @@
 	</environments>
 	<mappers>
 		<!-- fisrt way:resource -->
-		<mapper resource="com/chujun/practice/configs/mybatis/mappers/UserMapper.xml" />
+		 <mapper resource="com/chujun/practice/configs/mybatis/mappers/UserMapper.xml" />
 		<mapper resource="com/chujun/practice/configs/mybatis/mappers/AddressMapper.xml" />
 		<mapper resource="com/chujun/practice/configs/mybatis/mappers/BlogInfoMapper.xml" />
+		<mapper resource="com/chujun/practice/configs/mybatis/mappers/VehicleMapper.xml" /> 
+				
 		<!-- second way:class path -->
 		<!-- <mapper class="com.chujun.practice.mybatis.mapper.AddressMapper"/> -->
 		<!-- third way:url -->
-		<!-- fourth way:package -->
+		<!-- fourth way:package -->		
+		<!-- <package name="com.chujun.practice.mybatis.mapper"/> -->
 	</mappers>
 </configuration>

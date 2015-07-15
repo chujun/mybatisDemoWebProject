@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chujun.practice.mybatis.mapper.VehicleMapper">
+	<resultMap type="vehicle" id="vehicleReusltMap">
+		<id property="id" column="id" />
+		<result property="vin" column="vin" />
+		<result property="year" column="year" />
+		<result property="make" column="make" />
+		<result property="model" column="model" />
+		<result property="color" column="color" />
+	</resultMap>
+
+	<select id="findById" parameterType="int" resultMap="vehicleReusltMap">
+        select <include refid="base_sql"/>
+        from vehicle
+        where id=#{id}
+	</select>
+
+	<sql id="base_sql">
+		`id`,
+		`vin`,
+		`year`,
+		`make`,
+		`model`,
+		`color`,
+		`type`,
+		`door_count`,
+		`all_wheel_drive`,
+		`box_size`,
+		`extended_cab`
+	</sql>
+</mapper>
