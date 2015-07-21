@@ -19,7 +19,8 @@
 		<setting name="defaultExecutorType" value="SIMPLE" />
 		<setting name="defaultStatementTimeout" value="25" />
 		<setting name="safeRowBoundsEnabled" value="false" />
-		<setting name="mapUnderscoreToCamelCase" value="false" />
+		<!-- 经典数据库名->驼峰命名规则:从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
 		<setting name="localCacheScope" value="SESSION" />
 		<setting name="jdbcTypeForNull" value="OTHER" />
 		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />

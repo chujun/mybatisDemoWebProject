@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chujun.practice.mybatis.mapper.AddressMapper">
-    <select id="findByCountryId" parameterType="int" resultType="address">
+    <resultMap type="address" id="addressResultMap" autoMapping="true">
+        
+    </resultMap>
+    <select id="findByCountryId" parameterType="int" resultMap="addressResultMap">
         select * from `address` where country_ref  = #{countryId}
     </select>    
 </mapper>
