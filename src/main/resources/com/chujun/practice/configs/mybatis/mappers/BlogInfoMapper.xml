@@ -85,6 +85,7 @@
 	   <result property="subject" column="subject"/>
 	   <result property="draft" column="draft"/>
 	   <result property="body" column="body"/>
+	   <result property="state" column="state"/>
 	</resultMap>
 
 	<select id="findById" parameterType="long" resultMap="detailedBlogResultMap2">
@@ -162,9 +163,10 @@
         po.`section` as post_section,
         po.`subject` as post_subject,
         po.`draft` as post_draft,
-        po.`body` as post_body
+        po.`body` as post_body,
+        po.state as post_state
     </sql>
     <sql id="post_sql">
-       `id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`
+       `id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`,state
     </sql>
 </mapper>

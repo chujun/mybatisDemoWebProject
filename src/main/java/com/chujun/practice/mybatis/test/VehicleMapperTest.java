@@ -6,7 +6,9 @@
  */
 package com.chujun.practice.mybatis.test;
 
+import java.io.Console;
 import java.util.List;
+import java.util.Scanner;
 
 import junit.framework.TestCase;
 
@@ -41,6 +43,19 @@ public class VehicleMapperTest extends TestCase {
 		SqlSession session = sqlSessionFactory.openSession();
 		VehicleMapper mapper = session.getMapper(VehicleMapper.class);
 		List<Vehicle> vehicles = mapper.findAll();
-		System.out.print(vehicles);
+		System.out.println(vehicles);
+	}
+	
+	public void testCache(){
+		Scanner sc = new Scanner(System.in);
+		while(sc.hasNext()){
+			String next = sc.next();
+			if("Y".equals(next.toUpperCase().trim())){
+				this.testFindAll();				
+			}
+			if("EXIT".equals(next.toUpperCase().trim())){
+				break;				
+			}
+		}		
 	}
 }

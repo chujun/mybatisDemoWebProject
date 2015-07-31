@@ -113,12 +113,13 @@ CREATE TABLE `post` (
   `subject` varchar(20) COLLATE utf8_esperanto_ci NOT NULL DEFAULT '""',
   `draft` varchar(20) COLLATE utf8_esperanto_ci NOT NULL DEFAULT '""',
   `body` text COLLATE utf8_esperanto_ci NOT NULL,
+  `state` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0:normal，1：closed',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_esperanto_ci;
 
 /*Data for the table `post` */
 
-insert  into `post`(`id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`) values (1,1,2,'2015-07-14 18:17:41','\"花\"','\"园林\"','\"\"','flower'),(2,1,2,'2015-07-14 18:19:12','\"草\"','\"园林\"','\"\"','草是什么'),(3,2,1,'2015-07-14 18:21:11','\"欧洲\"','\"历史\"','\"\"','相对于西欧其他国家，为什么西班牙和葡萄牙能够地理大发现？'),(4,2,1,'2015-07-14 18:24:03','\"欧洲\"','\"历史\"','\"\"','论印刷术对宗教改革的影响');
+insert  into `post`(`id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`,`state`) values (1,1,2,'2015-07-14 18:17:41','\"花\"','\"园林\"','\"\"','flower',0),(2,1,2,'2015-07-14 18:19:12','\"草\"','\"园林\"','\"\"','草是什么',0),(3,2,1,'2015-07-14 18:21:11','\"欧洲\"','\"历史\"','\"\"','相对于西欧其他国家，为什么西班牙和葡萄牙能够地理大发现？',0),(4,2,1,'2015-07-14 18:24:03','\"欧洲\"','\"历史\"','\"\"','论印刷术对宗教改革的影响',0);
 
 /*Table structure for table `tag` */
 
@@ -173,7 +174,7 @@ CREATE TABLE `vehicle` (
 
 /*Data for the table `vehicle` */
 
-insert  into `vehicle`(`id`,`vin`,`year`,`make`,`model`,`color`,`type`,`door_count`,`all_wheel_drive`,`box_size`,`extended_cab`) values (1,'\"\"','1994','china','benchi','white',1,1,0,0,'\"\"'),(2,'\"\"','2004','china','qirui','black',2,4,1,0,'\"\"'),(3,'\"\"','2014','china','dazhong','black',3,4,1,0,'\"\"'),(4,'\"\"','2014','china','dazhong','black',3,4,1,0,'\"\"');
+insert  into `vehicle`(`id`,`vin`,`year`,`make`,`model`,`color`,`type`,`door_count`,`all_wheel_drive`,`box_size`,`extended_cab`) values (1,'\"\"','1951','china','benchi','white',1,1,0,0,'\"\"'),(2,'\"\"','1991','china','qirui','black',2,4,1,0,'\"\"'),(3,'\"\"','2013','china','dazhong','black',3,4,1,0,'\"\"'),(4,'\"\"','2014','china','dazhong','black',4,4,1,0,'\"\"');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
