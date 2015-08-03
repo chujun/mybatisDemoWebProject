@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chujun.practice.mybatis.mapper.VehicleMapper">
+    <cache/>
+	<resultMap type="vehicle" id="vehicleReusltMap">
+		<id property="id" column="id" />
+		<result property="vin" column="vin" />
+		<result property="year" column="year" />
+		<result property="make" column="make" />
+		<result property="model" column="model" />
+		<result property="color" column="color" />
+		<discriminator javaType="int" column="type">
+		  <case value="1" resultMap="carResult"/>
+		  <case value="2" resultMap="truckResult"/>
+		  <case value="3" resultType="suv">
+            <result property="allWheelDrive" column="all_wheel_drive" />
+          </case>
+          <!-- others:not handle -->
+		</discriminator>
+	</resultMap>
+	
+	<resultMap id="carResult" type="car">
+	   <result property="doorCount" column="door_count"/>
+	</resultMap>
+	
+	<resultMap id="truckResult" type="truck">
+       <result property="boxSize" column="box_size" />
+       <result property="extendedCab" column="extended_cab" />
+    </resultMap>
+    
+    
+	
+
+	<select id="findById" parameterType="int" resultMap="vehicleReusltMap">
+        select <include refid="base_sql"/>
+        from vehicle
+        where id=#{id}
+	</select>
+	
+	<select id="findAll" resultMap="vehicleReusltMap">
+        select <include refid="base_sql"/>
+        from vehicle    
+    </select>
+
+	<sql id="base_sql">
+		`id`,
+		`vin`,
+		`year`,
+		`make`,
+		`model`,
+		`color`,
+		`type`,
+		`door_count`,
+		`all_wheel_drive`,
+		`box_size`,
+		`extended_cab`
+	</sql>
+</mapper>

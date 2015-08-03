@@ -2,7 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chujun.practice.mybatis.mapper.AddressMapper">
-    <select id="findByCountryId" parameterType="int" resultType="address">
-        select * from `address` where country_ref  = #{countryId}
-    </select>    
+    <resultMap type="address" id="addressResultMap" >
+        <!-- 在自动映射开启的情况下，先自动映射，再手动映射 -->
+        <result property="countryName" column="sortName"/>
+    </resultMap>
+    <select id="findByCountryId" parameterType="int" resultMap="addressResultMap">
+        select <include refid="base_sql"/> from `address` where country_ref  = #{countryId}
+    </select>  
+    <sql id="base_sql">
+      `id`,
+  `continent`,
+  `country_ref`,
+  `country_name`as sortName,
+  `province`,
+  `city`,
+  `area`
+    </sql>  
 </mapper>

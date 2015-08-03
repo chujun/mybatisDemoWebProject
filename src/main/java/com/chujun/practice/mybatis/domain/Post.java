@@ -24,6 +24,8 @@ public class Post {
 	private String draft;
 	
 	private String body;
+	
+	private int state;
 
 	public long getId() {
 		return id;
@@ -87,6 +89,14 @@ public class Post {
 
 	public void setBody(String body) {
 		this.body = body;
+	}		
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 
 	@Override
@@ -97,7 +107,8 @@ public class Post {
 				.append(", createTime=").append(createTime)
 				.append(", section=").append(section).append(", subject=")
 				.append(subject).append(", draft=").append(draft)
-				.append(", body=").append(body).append("]");
+				.append(", body=").append(body).append(", state=")
+				.append(state).append("]");
 		return builder.toString();
 	}			
 }
