@@ -62,8 +62,25 @@ public class UserMapperTest extends TestCase {
 		UserMapper userMapper = session.getMapper(UserMapper.class);	
 		User user = userMapper.findById(11);
 		user.setUserAddress("anhui,huangshan");
-		user.setSalary(new BigDecimal(12345.353));
+		user.setCreateTime(new Date());
+		user.setEmployTime(new Date());
+		user.setSalary(new BigDecimal(12345.35343534534));
+		user.setUserAge(22);
 		userMapper.update(user);
+		session.commit();
+		session.close();
+	}
+	
+	public void testUpdateForDemoTrim(){
+		SqlSession session = sqlSessionFactory.openSession();
+		UserMapper userMapper = session.getMapper(UserMapper.class);	
+		User user = userMapper.findById(11);
+		user.setUserAddress("anhui,huangshan");
+		user.setCreateTime(new Date());
+		user.setEmployTime(new Date());
+		//user.setSalary(new BigDecimal(12345.35343534534));
+		user.setUserAge(20);
+		userMapper.updateForDemoTrim(user);
 		session.commit();
 		session.close();
 	}

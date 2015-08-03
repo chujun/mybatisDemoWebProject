@@ -23,4 +23,6 @@ public interface UserMapper extends GenericMapper<User>{
 	int batchUpdate(List<User> users);
 
 	List<UserInfo> findUserInfoAll();
+	
+	int updateForDemoTrim(User user);
 }
