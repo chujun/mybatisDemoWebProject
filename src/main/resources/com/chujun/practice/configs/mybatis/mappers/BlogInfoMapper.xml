@@ -10,7 +10,8 @@
 		<result property="title" column="title" />
 		<result property="authorId" column="author_id" />
 		<result property="coAuthorId" column="co_author_id" />
-		<association property="author" column="author_id" javaType="Author">
+		<association property="author" column="author_id"
+			javaType="Author">
 			<id property="id" column="user_id" />
 			<result property="userName" column="user_name" />
 			<result property="password" column="password" />
@@ -18,55 +19,61 @@
 			<result property="bio" column="bio" />
 			<result property="favouriteSection" column="favourite_section" />
 		</association>
-		<association property="coAuthor" column="co_author_id" javaType="Author">
-		    <id property="id" column="co_user_id" />
-            <result property="userName" column="co_user_name" />
-            <result property="password" column="co_password" />
-            <result property="email" column="co_email" />
-            <result property="bio" column="co_bio" />
-            <result property="favouriteSection" column="co_favourite_section" />
+		<association property="coAuthor" column="co_author_id"
+			javaType="Author">
+			<id property="id" column="co_user_id" />
+			<result property="userName" column="co_user_name" />
+			<result property="password" column="co_password" />
+			<result property="email" column="co_email" />
+			<result property="bio" column="co_bio" />
+			<result property="favouriteSection" column="co_favourite_section" />
 		</association>
-		<collection property="posts"  ofType="Post" columnPrefix="post_">
-		    <id property="id" column="id"/>
-            <result property="blogId" column="blog_id"/>
-            <result property="authorId" column="author_id"/>
-            <result property="createTime" column="create_time"/>
-            <result property="section" column="section"/>
-            <result property="subject" column="subject"/>
-            <result property="draft" column="draft"/>
-            <result property="body" column="body"/>
+		<collection property="posts" ofType="Post" columnPrefix="post_">
+			<id property="id" column="id" />
+			<result property="blogId" column="blog_id" />
+			<result property="authorId" column="author_id" />
+			<result property="createTime" column="create_time" />
+			<result property="section" column="section" />
+			<result property="subject" column="subject" />
+			<result property="draft" column="draft" />
+			<result property="body" column="body" />
 		</collection>
 	</resultMap>
-	
+
 	<resultMap type="BlogInfo" id="detailedBlogResultMap2">
-        <id property="id" column="blog_id"/> 
-        <result property="title" column="title" />
-        <result property="authorId" column="author_id" />
-        <result property="coAuthorId" column="co_author_id" />
-        <!--嵌套查询，增加一次gps,提高单次查询效率，-->
-        <association property="author" column="author_id" select="findAuthorById">
-        </association>
-        <association property="coAuthor" column="co_author_id" select="findAuthorById">
-        </association>
-        <collection property="posts" column="blog_id" ofType="Post" select="findPostByBlogId">
-        </collection>
-    </resultMap>
-    
-    <resultMap type="BlogInfo" id="detailedBlogResultMap3">
-        <constructor>
-            <idArg column="blog_id" javaType="_long" />
-        </constructor>
-        <!-- <id property="id" column="blog_id"/> -->
-        <result property="title" column="title" />
-        <result property="authorId" column="author_id" />
-        <result property="coAuthorId" column="co_author_id" />
-        <!-- 嵌套映射resultMap -->
-        <association property="author" column="author_id" javaType="Author" resultMap="authorResultMap"/>
-        <!-- columnPrefix:列名前缀使用 -->
-        <association property="coAuthor" column="co_author_id" javaType="Author" resultMap="authorResultMap" columnPrefix="co_"/>
-        <collection property="posts" ofType="Post" resultMap="postResultMap" columnPrefix="post_"></collection>
-    </resultMap>
-    
+		<id property="id" column="blog_id" />
+		<result property="title" column="title" />
+		<result property="authorId" column="author_id" />
+		<result property="coAuthorId" column="co_author_id" />
+		<!--嵌套查询，增加一次gps,提高单次查询效率， -->
+		<association property="author" column="author_id" select="findAuthorById">
+		</association>
+		<association property="coAuthor" column="co_author_id"
+			select="findAuthorById">
+		</association>
+		<collection property="posts" column="blog_id" ofType="Post"
+			select="findPostByBlogId">
+		</collection>
+	</resultMap>
+
+	<resultMap type="BlogInfo" id="detailedBlogResultMap3">
+		<constructor>
+			<idArg column="blog_id" javaType="_long" />
+		</constructor>
+		<!-- <id property="id" column="blog_id"/> -->
+		<result property="title" column="title" />
+		<result property="authorId" column="author_id" />
+		<result property="coAuthorId" column="co_author_id" />
+		<!-- 嵌套映射resultMap -->
+		<association property="author" column="author_id"
+			javaType="Author" resultMap="authorResultMap" />
+		<!-- columnPrefix:列名前缀使用 -->
+		<association property="coAuthor" column="co_author_id"
+			javaType="Author" resultMap="authorResultMap" columnPrefix="co_" />
+		<collection property="posts" ofType="Post" resultMap="postResultMap"
+			columnPrefix="post_"></collection>
+	</resultMap>
+
 	<resultMap type="Author" id="authorResultMap">
 		<id property="id" column="user_id" />
 		<result property="userName" column="user_name" />
@@ -75,28 +82,30 @@
 		<result property="bio" column="bio" />
 		<result property="favouriteSection" column="favourite_section" />
 	</resultMap>
-	
+
 	<resultMap type="Post" id="postResultMap">
-	   <id property="id" column="id"/>
-	   <result property="blogId" column="blog_id"/>
-	   <result property="authorId" column="author_id"/>
-	   <result property="createTime" column="create_time"/>
-	   <result property="section" column="section"/>
-	   <result property="subject" column="subject"/>
-	   <result property="draft" column="draft"/>
-	   <result property="body" column="body"/>
-	   <result property="state" column="state"/>
+		<id property="id" column="id" />
+		<result property="blogId" column="blog_id" />
+		<result property="authorId" column="author_id" />
+		<result property="createTime" column="create_time" />
+		<result property="section" column="section" />
+		<result property="subject" column="subject" />
+		<result property="draft" column="draft" />
+		<result property="body" column="body" />
+		<result property="state" column="state" />
 	</resultMap>
 
 	<select id="findById" parameterType="long" resultMap="detailedBlogResultMap2">
 		select
 		<include refid="blog_sql" />
 		,
-		<include refid="author_sql" />,
-		<include refid="co_author_sql"/>
+		<include refid="author_sql" />
+		,
+		<include refid="co_author_sql" />
 		from blog b
 		left join author user on b.author_id=user.id
-		left join author co_user on b.co_author_id=co_user.id
+		left join
+		author co_user on b.co_author_id=co_user.id
 		where
 		b.id=#{id}
 	</select>
@@ -107,66 +116,169 @@
 		,
 		<include refid="author_sql" />
 		,
-		<include refid="co_author_sql"/>
+		<include refid="co_author_sql" />
 		from blog b
 		left join author user on b.author_id=user.id
-		left join author co_user on b.co_author_id=co_user.id
+		left join
+		author co_user on b.co_author_id=co_user.id
 	</select>
-	
-	
+
+
 	<select id="findAllLeftJoinPost" resultMap="detailedBlogResultMap3">
-        select
-        <include refid="blog_sql" />
-        ,
-        <include refid="author_sql" />
-        ,
-        <include refid="co_author_sql"/>
-        ,
-        <include refid="post_sql_alias"/>
-        from blog b
-        left join author user on b.author_id=user.id
-        left join author co_user on b.co_author_id=co_user.id
-        left join post po on b.id=po.blog_id
-    </select>
-	
-	<select id="findAuthorById" parameterType="long" resultMap="authorResultMap">
-	   select <include refid="author_sql"/>
-	   from author user
-	   where user.id=#{id}
+		select
+		<include refid="blog_sql" />
+		,
+		<include refid="author_sql" />
+		,
+		<include refid="co_author_sql" />
+		,
+		<include refid="post_sql_alias" />
+		from blog b
+		left join author user on b.author_id=user.id
+		left join
+		author co_user on b.co_author_id=co_user.id
+		left join post po on
+		b.id=po.blog_id
 	</select>
-	
+
+	<select id="findAuthorById" parameterType="long" resultMap="authorResultMap">
+		select
+		<include refid="author_sql" />
+		from author user
+		where user.id=#{id}
+	</select>
+
 	<select id="findPostByBlogId" parameterType="long" resultMap="postResultMap">
-	   select <include refid="post_sql"/>
-	   from post 
-	   where blog_id=#{blogId}
+		select
+		<include refid="post_sql" />
+		from post
+		where blog_id=#{blogId}
+	</select>
+
+	<select id="findActivePostWithSubjectLike" resultMap="postResultMap">
+		select
+		<include refid="post_sql" />
+		from post
+		where state=0
+		<if test="#subject !=null">
+			and subject like #{subject}
+		</if>
+	</select>
+
+	<!-- 可选地通过“subject”和“author name”两个条件搜索 ,参数类型为map -->
+	<select id="findActiveBlogLike" parameterType="map" resultMap="postResultMap">
+		select
+		<include refid="post_sql_alias2" />
+		from post p
+		inner join author user on p.author_id=user.id
+		where state=0
+		<if test="subject !=null">
+			and subject like #{subject}
+		</if>
+		<!-- ognl表达式上下文环境：and author.name !=null -->
+		<if test="author!=null and author.userName!=null">
+			and user.user_name like #{author.userName}
+		</if>
+	</select>
+
+	<!-- -->
+	<select id="findActiveBlogLikev2" parameterType="map" resultMap="postResultMap">
+		select
+		<include refid="post_sql_alias2" />
+		from post p
+		inner join author user on p.author_id=user.id
+		where state=0
+		<choose>
+			<when test="subject!=null">
+				and subject like #{subject}
+			</when>
+			<when test="author!=null and author.userName!=null">
+				and user.user_name like #{author.userName}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findActiveBlogLikev3" parameterType="map" resultMap="postResultMap">
+		select
+		<include refid="post_sql_alias2" />
+		from post p
+		inner join author user on p.author_id=user.id
+
+		<where>
+			<if test="state &gt;=0">
+				and state=#{state}
+			</if>
+			<if test="subject !=null">
+				and subject like #{subject}
+			</if>
+			<!-- ognl表达式上下文环境：and author.name !=null -->
+			<if test="author!=null and author.userName!=null">
+				and user.user_name like #{author.userName}
+			</if>
+		</where>
+	</select>
+
+	<select id="findActiveBlogLikev4" parameterType="map" resultMap="postResultMap">
+		select
+		<include refid="post_sql_alias2" />
+		from post p
+		inner join author user on p.author_id=user.id
+		<!-- 我认为这里trim最终将动态生成的sql语句中的可能存在的prefixOverrides字符串（没有的话就添加）替换成prefix中的字符串：-->
+		<!--1.动态生成的字符串存在and： and state=#{state} AND subject like #{subject} AND user.user_name like #{author.userName}-->
+		<!--1.where state=#{state} AND subject like #{subject} AND user.user_name like #{author.userName} -->
+		<!--2.动态生成的字符串不存在and：state=#{state} AND subject like #{subject} AND user.user_name like #{author.userName}-->
+		<!-- 2.where state=#{state} AND subject like #{subject} AND user.user_name like #{author.userName} -->
+        <trim prefix="where" prefixOverrides="AND |OR ">            
+            <if test="state!=null and state &gt;=0">
+                <!-- 注意：这里的and去除也可以正常运行,管道字符串不缺分大小写：这里是小写的and也可以 -->
+                and state=#{state}
+            </if>
+            <if test="subject !=null">
+                AND subject like #{subject}
+            </if>
+            <!-- ognl表达式上下文环境：and author.name !=null -->
+            <if test="author!=null and author.userName!=null">
+                AND user.user_name like #{author.userName}
+            </if>
+        </trim>						
 	</select>
 
 	<sql id="blog_sql">
 		b.`id` as blog_id,b.`title`,b.`author_id`,b.co_author_id
 	</sql>
 	<sql id="author_sql">
-		user.`id` as user_id,user.`user_name`,user.`password`,user.`email`,user.`bio`,user.`favourite_section`
+		user.`id` as
+		user_id,user.`user_name`,user.`password`,user.`email`,user.`bio`,user.`favourite_section`
 	</sql>
 	<sql id="co_author_sql">
-        co_user.`id` as co_user_id,
-        co_user.`user_name` as co_user_name,
-        co_user.`password` as co_password,
-        co_user.`email` as co_email,
-        co_user.`bio` as co_bio,
-        co_user.`favourite_section` as co_favourite_section
-    </sql>
-    <sql id="post_sql_alias">
-        po.`id` as post_id,
-        po.`blog_id` as post_blog_id,
-        po.`author_id` as post_author_id,
-        po.`create_time` as post_create_time,
-        po.`section` as post_section,
-        po.`subject` as post_subject,
-        po.`draft` as post_draft,
-        po.`body` as post_body,
-        po.state as post_state
-    </sql>
-    <sql id="post_sql">
-       `id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`,state
-    </sql>
+		co_user.`id` as co_user_id,
+		co_user.`user_name` as
+		co_user_name,
+		co_user.`password` as co_password,
+		co_user.`email` as
+		co_email,
+		co_user.`bio` as co_bio,
+		co_user.`favourite_section` as
+		co_favourite_section
+	</sql>
+	<sql id="post_sql_alias">
+		po.`id` as post_id,
+		po.`blog_id` as post_blog_id,
+		po.`author_id` as post_author_id,
+		po.`create_time` as post_create_time,
+		po.`section` as post_section,
+		po.`subject` as post_subject,
+		po.`draft`
+		as post_draft,
+		po.`body` as post_body,
+		po.state as post_state
+	</sql>
+	<sql id="post_sql">
+		`id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`,state
+	</sql>
+	<sql id="post_sql_alias2">
+		p.`id`,`blog_id`,`author_id`,`create_time`,`section`,`subject`,`draft`,`body`,state
+	</sql>
 </mapper>
